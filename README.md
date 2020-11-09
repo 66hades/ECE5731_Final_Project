@@ -29,8 +29,8 @@ Prepared for ECE 5731
 
 
 ## References
--[NU32 Development board](http://hades.mech.northwestern.edu/index.php/NU32)
-	-[Software/sample code](http://hades.mech.northwestern.edu/index.php/NU32_Software)
--[Github formatting](https://docs.github.com/en/free-pro-team@latest/github/writing-on-github/basic-writing-and-formatting-syntax).
--[For C file structures)[https://opensource.com/article/19/7/structure-multi-file-c-part-1]
--[Github Tutorial For Beginners - Github Basics for Mac or Windows & Source Control Basics](https://www.youtube.com/watch?v=0fKg7e37bQE)
+-[NU32 Development board](http://hades.mech.northwestern.edu/index.php/NU32)  
+	-[Software/sample code](http://hades.mech.northwestern.edu/index.php/NU32_Software)  
+-[Github formatting](https://docs.github.com/en/free-pro-team@latest/github/writing-on-github/basic-writing-and-formatting-syntax).  
+-[For C file structures)[https://opensource.com/article/19/7/structure-multi-file-c-part-1]  
+-[Github Tutorial For Beginners - Github Basics for Mac or Windows & Source Control Basics](https://www.youtube.com/watch?v=0fKg7e37bQE)  
