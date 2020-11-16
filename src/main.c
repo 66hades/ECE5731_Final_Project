@@ -2,10 +2,13 @@
 #include "NU32.h"   //for NU32 board specific functions
 
 //GLOBAL VARIABLES
-//list here
+#define SERVO_PWM_FREQUENCY = 
 
 //FUNCTIONS
-//list here
+void init(void)
+{
+	
+}
 
 //INTERRUPTS
 //LIST HERE
