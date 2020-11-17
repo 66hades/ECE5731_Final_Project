@@ -20,13 +20,16 @@ Prepared for ECE 5731
 ### Brian Neumeyer
 - [x] Create basic file sturcture
 - [ ] Assign subsystems
+- [ ] Pin arguments for init functions
 
 ## Lisa Branchick
 - [ ] Get github account
+- [ ] Does #include "NU32.h" need to be in every submodule .c file or just main.c?
 
 ## Aaron Garofalo
 - [x] Get github account
 - [ ] GitHub desktop tutorial  
+- [ ] Correct servo duty cycle math
 
 
 ## References
