@@ -2,12 +2,16 @@
 #include "NU32.h"   //for NU32 board specific functions
 
 //GLOBAL VARIABLES
-#define SERVO_PWM_FREQUENCY = 
+//PIN DEFINITIONS
+#define PHOTORESISTOR_INPUT_PIN = 29			//NU32 pin B14
+#define SERVO_PWM_OUTPUT_PIN = 46				//NU32 pin D0
 
 //FUNCTIONS
 void init(void)
 {
-	
+	NU32_Startup();         //cache on, interrupts on, LED/button init, UART init
+	initServo();			//start & setup servo
+	initPhotoresistor();	//start & setup photoresistor
 }
 
 //INTERRUPTS
@@ -15,5 +19,6 @@ void init(void)
 
 int main(void)
 {
-return 0;
+	init();					//start & setup all modules
+	return 0;
 }
