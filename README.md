@@ -30,8 +30,6 @@ Prepared for ECE 5731
 - [x] Get github account
 - [ ] GitHub desktop tutorial  
 - [ ] Correct servo duty cycle math
-- [x] Edit readme, bitchs
-- [x] Edit 
 
 
 ## References
