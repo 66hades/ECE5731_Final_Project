@@ -45,18 +45,24 @@ PRESCALER OPTIONS TIMERS 2 THRU 5
 //FUNCTIONS
 /********************************/
 
-void initServo(void)							//Initializes the servo IO & PWM
+int initServo(int pin)							//Initializes the servo IO & PWM
 {
-  T3CONbits.TCKPS = PWM_TIMER3_PRESCALER;		// Timer3 prescaler N=4 (1:4)
-  PR3 = PWM_TIMER3_PERIOD_REGISTER;             // 20 ms
-  TMR3 = 0;										// initial TMR2 count is 0
-  OC1CONbits.OCM = 0b110;						// PWM mode without fault pin; other OC1CON bits are defaults
-  OC1CONbits.OCTSEL = 1;						// optional (default)
-  OC1RS = 625;									// duty cycle = OC1RS/(PR2+1) = 25%
-  OC1R = 625;									// initialize before turning OC1 on; afterward it is read-only
-  T3CONbits.ON = 1;								// turn on Timer2
-  OC1CONbits.ON = 1;							// turn on OC1
-/////End servo setup
+	if (pin == 46)
+	{
+		T3CONbits.TCKPS = PWM_TIMER3_PRESCALER;		// Timer3 prescaler N=4 (1:4)
+		PR3 = PWM_TIMER3_PERIOD_REGISTER;             // 20 ms
+		TMR3 = 0;										// initial TMR2 count is 0
+		OC1CONbits.OCM = 0b110;						// PWM mode without fault pin; other OC1CON bits are defaults
+		OC1CONbits.OCTSEL = 1;						// optional (default)
+		OC1RS = 625;									// duty cycle = OC1RS/(PR2+1) = 25%
+		OC1R = 625;									// initialize before turning OC1 on; afterward it is read-only
+		T3CONbits.ON = 1;								// turn on Timer2
+		OC1CONbits.ON = 1;							// turn on OC1
+		
+		return pin;									//returns pin after init
+	}
+
+	return 0;
 }
 
 //sets the PWM duty cycle of the servo
