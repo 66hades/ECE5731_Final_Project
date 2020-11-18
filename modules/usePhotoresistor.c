@@ -23,12 +23,19 @@
 //FUNCTIONS
 /********************************/
 
-void initPhotosensor(char pin);				//setup photoresistor
+int initPhotosensor(int pin);				//setup photoresistor
 {
-	AD1PCFGbits.PCFG14 = 0;                 // AN14 is an adc pin
-	AD1CON3bits.ADCS = 2;                   // ADC clock period is Tad = 2*(ADCS+1)*Tpb =
-											//                           2*3*12.5ns = 75ns
-	AD1CON1bits.ADON = 1;                   // turn on A/D converter
+	if(pin == 30)
+	{
+		AD1PCFGbits.PCFG15 = 0;                 // AN14 is an adc pin
+		AD1CON3bits.ADCS = 2;                   // ADC clock period is Tad = 2*(ADCS+1)*Tpb =
+												//                           2*3*12.5ns = 75ns
+		AD1CON1bits.ADON = 1;                   // turn on A/D converter
+
+		return pin;
+	}
+
+	return 0;
 }
 
 unsigned int adc_sample_convert(int pin) { // sample & convert the value on the given 
