@@ -23,8 +23,10 @@ Prepared for ECE 5731
 - [ ] Pin arguments for init functions
 
 ## Lisa Branchick
-- [ ] Get github account
-- [ ] Does #include "NU32.h" need to be in every submodule .c file or just main.c?
+- [x] Get github account
+- [x] Does #include "NU32.h" need to be in every submodule .c file or just main.c?
+- [x] Complete Github tutorial
+- [ ] Investigate RTC module
 
 ## Aaron Garofalo
 - [x] Get github account
