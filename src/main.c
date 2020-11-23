@@ -5,6 +5,7 @@
 //PIN DEFINITIONS
 #define PHOTORESISTOR_INPUT_PIN = 29			//NU32 pin B14
 #define SERVO_PWM_OUTPUT_PIN = 46				//NU32 pin D0
+#define RTC_PIN = 42							//NU32 pin D8
 
 //FUNCTIONS
 void init(void)
