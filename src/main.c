@@ -1,25 +1,36 @@
 //LIBRARIES & HEADERS
 #include "NU32.h"   //for NU32 board specific functions
-
+#include "useLCD.h"
 //GLOBAL VARIABLES
+#define DAYTIME_STATE 1							//Day is 1
+#define NIGHTTIME_STATE 0						//Night is 0
+
 //PIN DEFINITIONS
 #define PHOTORESISTOR_INPUT_PIN = 29			//NU32 pin B14
 #define SERVO_PWM_OUTPUT_PIN = 46				//NU32 pin D0
 #define RTC_PIN = 42							//NU32 pin D8
+#define LCD_0_PIN 60							//NU32 pin E0
+#define LCD_1_PIN 61							//NU32 pin E1
+#define LCD_2_PIN 62							//NU32 pin E2
+#define LCD_3_PIN 63							//NU32 pin E3
+#define LCD_4_PIN 64							//NU32 pin E0
+#define LCD_5_PIN 1								//NU32 pin E0
+#define LCD_6_PIN 2								//NU32 pin E6
+#define LCD_7_PIN 3								//NU32 pin E7
+#define LCD_E_PIN 52							//NU32 pin D4
+#define LCD_R_W_PIN 53							//NU32 pin D5
+#define LCD_RS_PIN 28							//NU32 pin 13
+
 
 //FUNCTIONS
-void init(void)
+int init(void)
 {	
 	NU32_Startup();
-	//checks all modules to see if they initialized correctly
-	if(initServo(SERVO_PWM_OUTPUT_PIN) && initPhotoresistor(PHOTORESISTOR_INPUT_PIN))
-	{
-		return 1;
-	}
-	else
-	{
-		return 0;
-	}
+	initServo();
+	initPhotoresistor();
+	initLCD();
+
+	return 1;
 }
 
 //INTERRUPTS
@@ -27,26 +38,6 @@ void init(void)
 
 int main(void)
 {
-	if (!init())			//start & setup all modules
-	{						//on failure, onboard LEDs will alternate flashing every 1/2 second
-		while (1)
-		{
-			NU32_LED1 = 1;
-
-			for (int i = 40000000)
-			{
-				NU32_LED1 = !NU32_LED1;
-				NU32_LED2 = !NU32_LED2;
-			}
-		}
-	} 
-	
-						//on successful init, main infinite loop executes
-	while (1)				//put main loop stuff here
-	{
-
-	}
-	
 	
 	return 0;
 }

@@ -3,10 +3,13 @@
 // to use the LCD for Good Morning Blinds Project
 //todo
 
-//includes
-
 //defines
 
 //functions
-	//init
+void initLCD(void);
+void timeStatusLCD(int state);
+void lightLevelLCD(int lightLvl);
+void servoPosLCD(int servoPos);
+void batteryLvlLCD(int battLvl);
+
 #endif

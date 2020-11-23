@@ -19,8 +19,10 @@ Prepared for ECE 5731
 
 ### Brian Neumeyer
 - [x] Create basic file sturcture
-- [ ] Assign subsystems
-- [ ] Pin arguments for init functions
+- [x] Assign subsystems
+- [x] LCD display functions & header file
+- [ ] LCD interrupt timer to switch which info is displayed
+- [ ] Bluetooth comms & app
 
 ## Lisa Branchick
 - [x] Get github account
