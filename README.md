@@ -41,6 +41,7 @@ Prepared for ECE 5731
 - [ ] useLCD.c ()
 - [ ] useBluetooth.c (Brian)
 - [ ] useSwitches.c ()
+- [ ] usePotentiometer ()
 
 
 ## References
