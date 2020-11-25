@@ -1,5 +1,6 @@
 /*todo
 -If time, custom day/night chars for states
+-If time, reduce time spent in interrupt Timer5ISR. Change a flag which gets checked and excecuted in main loop
 */
 
 /*SUPPLEMENTARY INFO

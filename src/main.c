@@ -37,7 +37,7 @@
 int init(void)
 {	
 	NU32_Startup();
-	//initServo();
+	initServo();
 	//initPhotoresistor();
 	initLCD();
 
@@ -50,7 +50,8 @@ int main(void)
 
 	while (1)
 	{
-		;
+
 	}
+
 	return 0;
 }
