@@ -46,9 +46,12 @@ void __ISR(_TIMER_3_VECTOR, IPL5SOFT) infoTimerISR(void)
 	case 3:
 		batteryLvlLCD(battLvl);
 		break;
+	default:
+		infoFlag = 0;
 	}
 
 	IFS0bits.T3IF = 0;              // clear interrupt flag
+	infoFlag++;
 }
 
 
@@ -59,9 +62,9 @@ void initLCD(void)
 	//timer interrupt setup
 	__builtin_disable_interrupts();
 	T2CONbits.T32 = 1;               // use Timer23 in 32bit mode
-	PR2 = 80000000;               //             set period register
+	PR2 = 6250000;               //             set period register
 	TMR2 = 0;                       //             initialize count to 0
-	T2CONbits.TCKPS = 0;            //             set prescaler to 1
+	T2CONbits.TCKPS = 7;            //             set prescaler to 1
 	T2CONbits.ON = 1;               //             turn on Timer23
 
 	IPC3bits.T3IP = 5;              // INT step 4: priority
