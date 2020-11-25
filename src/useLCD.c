@@ -23,6 +23,7 @@ LCD screen needs 5M delay to display clearly
 #include "useLCD.h"
 
 //defines
+<<<<<<< Updated upstream
 volatile char infoFlag = 0;			//0 day or night; 1 photo; 2 servo; 3 battery
 volatile int state;
 volatile int lightLvl;
@@ -54,6 +55,13 @@ void __ISR(_TIMER_3_VECTOR, IPL5SOFT) infoTimerISR(void)
 	infoFlag++;
 }
 
+=======
+#define MSG_LEN_UPPER 16			//Upper row is 16 char long
+#define MSG_LEN_LOWER 16			//Lower row is 16 char long
+
+
+//functions
+>>>>>>> Stashed changes
 
 void initLCD(void)
 {
@@ -61,11 +69,19 @@ void initLCD(void)
 
 	//timer interrupt setup
 	__builtin_disable_interrupts();
+<<<<<<< Updated upstream
 	T2CONbits.T32 = 1;               // use Timer23 in 32bit mode
 	PR2 = 6250000;               //             set period register
 	TMR2 = 0;                       //             initialize count to 0
 	T2CONbits.TCKPS = 7;            //             set prescaler to 1
 	T2CONbits.ON = 1;               //             turn on Timer23
+=======
+	T2CONbits.T32 = 1;               // use Timer45 in 32bit mode
+	PR2 = 49999999	;               //             set period register
+	TMR2 = 0;                       //             initialize count to 0
+	T2CONbits.TCKPS = 0b011;        //             set prescaler to 1
+	T2CONbits.ON = 1;               //             turn on Timer45
+>>>>>>> Stashed changes
 
 	IPC3bits.T3IP = 5;              // INT step 4: priority
 	IPC3bits.T3IS = 0;              //             subpriority
@@ -74,6 +90,7 @@ void initLCD(void)
 	
 	__builtin_enable_interrupts();  // INT step 7: enable interrupts at CPU
 	//end setup interrupt
+
 }
 
 void timeStatusLCD(int state)

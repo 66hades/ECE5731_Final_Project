@@ -25,7 +25,7 @@
 
 int initPhotosensor(int pin);				//setup photoresistor
 {
-	if(pin == 30)
+	if(pin == 29)
 	{
 		AD1PCFGbits.PCFG15 = 0;                 // AN14 is an adc pin
 		AD1CON3bits.ADCS = 2;                   // ADC clock period is Tad = 2*(ADCS+1)*Tpb =
