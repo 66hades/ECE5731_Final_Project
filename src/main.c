@@ -14,7 +14,6 @@
 #define DAYTIME_STATE 1							//Day is 1
 #define NIGHTTIME_STATE 0						//Night is 0
 
-volatile char infoFlag = 0;			//0 day or night; 1 photo; 2 servo; 3 battery
 
 //PIN DEFINITIONS
 #define PHOTORESISTOR_INPUT_PIN = 29			//NU32 pin B14
@@ -33,33 +32,7 @@ volatile char infoFlag = 0;			//0 day or night; 1 photo; 2 servo; 3 battery
 #define LCD_RS_PIN 28							//NU32 pin B13
 
 //INTERRUPTS
-//Timer45 interrupt for cycling through LCD info 
-void __ISR(_TIMER_5_VECTOR, IPL5SOFT) Timer5ISR(void) {  // INT step 1: the ISR
-	switch (infoFlag) {
-	case 0:
-		timeStatusLCD(1);
-		break;
-	case 1:
-		lightLevelLCD(45);
-		break;
-	case 2:
-		servoPosLCD(86);
-		break;
-	case 3:
-		batteryLvlLCD(53);
-		break;
-	default:
-		infoFlag = 0;
-	}
 
-	infoFlag++;
-
-	if (infoFlag > 3)
-	{
-		infoFlag = 0;
-
-	}	IFS0bits.T5IF = 0;              // clear interrupt flag
-}
 //FUNCTIONS
 int init(void)
 {	
