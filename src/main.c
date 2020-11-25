@@ -73,6 +73,8 @@ int init(void)
 
 int main(void)
 {
+	init();
+
 	while (1)
 	{
 		;
