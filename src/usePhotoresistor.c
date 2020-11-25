@@ -23,7 +23,7 @@
 //FUNCTIONS
 /********************************/
 
-int initPhotosensor(int pin);				//setup photoresistor
+int initPhotosensor(int pin)				//setup photoresistor
 {
 	if(pin == 29)
 	{
