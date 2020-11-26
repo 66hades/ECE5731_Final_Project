@@ -5,13 +5,14 @@
 
 /*SUPPLEMENTARY INFO
 LCD screen is 16 char wide by 2 rows
-LCD screen needs 5M delay to display clearly
+LCD screen needs ~5M delay to display clearly
 
 // set up the parallel master port (PMP) to control the LCD
 // pins RE0 - RE7 (PMD0 - PMD7) connect to LCD pins D0 - D7
 // pin RD4 (PMENB) connects to LCD pin E
 // pin RD5 (PMRD/PMWR) Connects to LCD pin R/W
 // pin RB13 (PMA10) Connects to RS.
+// LCD pin V0 to GND with 2.4kOhm resistor for contrast
 // interrupts will be disabled while init setup function executes
 */
 
