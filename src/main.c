@@ -17,6 +17,7 @@
 
 //PIN DEFINITIONS
 #define PHOTORESISTOR_INPUT_PIN = 29			//NU32 pin B14
+#define POT_INPUT_PIN = 27								//NU32 pin B12
 #define SERVO_PWM_OUTPUT_PIN = 46				//NU32 pin D0
 #define RTC_PIN = 42							//NU32 pin D8
 #define LCD_0_PIN 60							//NU32 pin E0
@@ -38,7 +39,7 @@ int init(void)
 {	
 	NU32_Startup();
 	initServo();
-	//initPhotoresistor();
+	initPhotoresistor();
 	initLCD();
 
 	return 1;
