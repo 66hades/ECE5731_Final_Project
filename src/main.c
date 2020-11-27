@@ -14,12 +14,27 @@
 #define DAYTIME_STATE 1							//Day is 1
 #define NIGHTTIME_STATE 0						//Night is 0
 
+/*
+suggestion: use int day = 0;		//day = 1, night = 0
+
+if (day) {
+	
+}
+
+or 
+
+if(!day) {
+	
+}
+*/
+
 
 //PIN DEFINITIONS
 #define PHOTORESISTOR_INPUT_PIN = 29			//NU32 pin B14
-#define POT_INPUT_PIN = 27								//NU32 pin B12
+#define POT_INPUT_PIN = 27						//NU32 pin B12
 #define SERVO_PWM_OUTPUT_PIN = 46				//NU32 pin D0
 #define RTC_PIN = 42							//NU32 pin D8
+#define BUTTon_PIN = 45							//NU32 pin D11			
 #define LCD_0_PIN 60							//NU32 pin E0
 #define LCD_1_PIN 61							//NU32 pin E1
 #define LCD_2_PIN 62							//NU32 pin E2
