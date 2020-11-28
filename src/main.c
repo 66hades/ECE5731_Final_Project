@@ -11,22 +11,8 @@
 //Timer3 is for PWM control of servo
 //Timer45 is for LCD display control
 //GLOBAL VARIABLES
-#define DAYTIME_STATE 1							//Day is 1
-#define NIGHTTIME_STATE 0						//Night is 0
 
-/*
-suggestion: use int day = 0;		//day = 1, night = 0
-
-if (day) {
-	
-}
-
-or 
-
-if(!day) {
-	
-}
-*/
+volatile int day_night = 1  //day = 1, night = 0
 
 
 //PIN DEFINITIONS

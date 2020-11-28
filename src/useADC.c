@@ -37,24 +37,6 @@
 	}
 
 	return 0;
-}
-
-unsigned int adc_sample_convert(int pin) { // sample & convert the value on the given 
-										   // adc pin the pin should be configured as an 
-										   // analog input1 in AD1PCFG
-	unsigned int elapsed = 0, finish_time = 0;
-	AD1CHSbits.CH0SA = pin;                // connect chosen pin to MUXA for sampling
-	AD1CON1bits.SAMP = 1;                  // start sampling
-	elapsed = _CP0_GET_COUNT();
-	finish_time = elapsed + SAMPLE_TIME;
-	while (_CP0_GET_COUNT() < finish_time) {
-		;                                   // sample for more than 250 ns
-	}
-	AD1CON1bits.SAMP = 0;                 // stop sampling and start converting
-	while (!AD1CON1bits.DONE) {
-		;                                   // wait for the conversion process to finish
-	}
-	return ADC1BUF0;                      // read the buffer with the result, ranges from 0 to 1023
 }*/
 
 unsigned int adc_sample_convert(int pin) { // sample & convert the value on the given 
@@ -99,9 +81,9 @@ int main(void) {
     
     _CP0_SET_COUNT(0);                    // delay to prevent a flood of messages
 
-    while(_CP0_GET_COUNT() < DELAY_TICKS) { 
-      ;
-    }
+    while(_CP0_GET_COUNT() < DELAY_TICKS) {;}
+	
   }
+
   return 0;
 }

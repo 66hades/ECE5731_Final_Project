@@ -32,7 +32,7 @@ volatile char infoFlag = 0;			//0 day or night; 1 photo; 2 servo; 3 battery
 void __ISR(_TIMER_5_VECTOR, IPL5SOFT) Timer5ISR(void) {  // INT step 1: the ISR
 	switch (infoFlag) {
 	case 0:
-		timeStatusLCD(1);
+		timeStatusLCD(day_night);
 		break;
 	case 1:
 		lightLevelLCD(45);
