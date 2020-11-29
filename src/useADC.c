@@ -34,7 +34,7 @@ volatile int anglePos = 0;
 /********************************/
 
 //Timer2 interrupt for sampling ADC
-void __ISR(_TIMER_2_VECTOR, IPL5SOFT) Timer2ISR(void) {  // INT step 1: the ISR
+void __ISR(_TIMER_2_VECTOR, IPL2SOFT) Timer2ISR(void) {  // INT step 1: the ISR
 	
 	setPhoto();
 	setPot();
@@ -83,7 +83,7 @@ void initADC(void)
 	T2CONbits.TCKPS = 0b110;            //             set prescaler to 1:64
 	T2CONbits.ON = 1;               //             turn on Timer23
 
-	IPC2bits.T2IP = 5;              // INT step 4: priority
+	IPC2bits.T2IP = 2;              // INT step 4: priority
 	IPC2bits.T2IS = 0;              //             subpriority
 	IFS0bits.T2IF = 0;              // INT step 5: clear interrupt flag
 	IEC0bits.T2IE = 1;              // INT step 6: enable interrupt
@@ -93,27 +93,29 @@ void initADC(void)
 
 void setPhoto(void)
 {
-	sample12 = adc_sample_convert(12);    // sample and convert pin 12
-	lightPerc = (100 / 1023)*sample12;		//sets light percentage from 0 to 100%
-
+	sample14 = adc_sample_convert(14);    // sample and convert pin 14
+	lightPerc = (100.0 / 1023)*sample14;		//sets light percentage from 0 to 100%
+	
+	/*
 	//delays reading once ever 1/80 seconds
+
 	_CP0_SET_COUNT(0);
 
+	
 	while (_CP0_GET_COUNT() < DELAY_TICKS) 
 	{
 		;
 	}
 	//end delay
-
-	return 0;
+	*/
 }
 
 void setBatt(void)
 {
 	sample15 = adc_sample_convert(15);    // sample and convert pin 12
-	battPerc = (100 / 1023)*sample12;		//sets light percentage from 0 to 100%
+	battPerc = (100.0 / 1023)*sample15;		//sets light percentage from 0 to 100%
 
-											//delays reading once ever 1/80 seconds
+	/*										//delays reading once ever 1/80 seconds
 	_CP0_SET_COUNT(0);
 
 	while (_CP0_GET_COUNT() < DELAY_TICKS)
@@ -121,15 +123,15 @@ void setBatt(void)
 		;
 	}
 	//end delay
-
-	return 0;
+	*/
 }
 
 void setPot(void)
 {
-	sample14 = adc_sample_convert(14);    // sample and convert pin 14
-	anglePos = (90 / 1023)*sample14;		//sets angle between 0 and 90 deg
-
+	sample12 = adc_sample_convert(12);    // sample and convert pin 12
+	anglePos = (90.0 / 1023)*sample12;		//sets angle between 0 and 90 deg
+	
+	/*
 	//delays reading once ever 1/80 seconds
 	_CP0_SET_COUNT(0);
 
@@ -138,8 +140,7 @@ void setPot(void)
 		;
 	}
 	//end delay
-
-	return 0;
+	*/
 }
 
 int getPhoto(void)

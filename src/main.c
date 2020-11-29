@@ -43,8 +43,8 @@ int init(void)
 {	
 	NU32_Startup();
 	initServo();
-	initADC();
 	initLCD();
+	initADC();
 	initBluetooth();
 
 	return 1;

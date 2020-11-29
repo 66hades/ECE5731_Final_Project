@@ -28,10 +28,11 @@ LCD screen needs ~5M delay to display clearly
 
 volatile char infoFlag = 0;			//0 day or night; 1 photo; 2 servo; 3 battery
 extern volatile int day_night = 1;  //day = 1, night = 0
+volatile char msg[100] = {};
 
 //functions
 //Timer45 interrupt for cycling through LCD info 
-void __ISR(_TIMER_5_VECTOR, IPL5SOFT) Timer5ISR(void) {  // INT step 1: the ISR
+void __ISR(_TIMER_5_VECTOR, IPL3SOFT) Timer5ISR(void) {  // INT step 1: the ISR
 	switch (infoFlag) {
 	case 0:
 		timeStatusLCD(day_night);
@@ -55,7 +56,12 @@ void __ISR(_TIMER_5_VECTOR, IPL5SOFT) Timer5ISR(void) {  // INT step 1: the ISR
 	{
 		infoFlag = 0;
 
-	}	IFS0bits.T5IF = 0;              // clear interrupt flag
+	}	
+	
+	sprintf(msg, "Time: %d\t\tLight: %d\t\tServo: %d\t\tBatt: %d\n\r", day_night, getPhoto(), getPot(), getBatt());
+	NU32_WriteUART3(msg);
+
+	IFS0bits.T5IF = 0;              // clear interrupt flag
 }
 
 void initLCD(void)
@@ -65,12 +71,13 @@ void initLCD(void)
 	__builtin_disable_interrupts(); // INT step 2: disable interrupts at CPU
 									// INT step 3: setup peripheral
 	T4CONbits.T32 = 1;               // use Timer23 in 32bit mode
-	PR4 = 49999999;               //             set period register
+	PR4 = 8999999;               //             set period register
+	//use 49999999 for 5 seconds
 	TMR4 = 0;                       //             initialize count to 0
 	T4CONbits.TCKPS = 0b011;            //             set prescaler to 1:8
 	T4CONbits.ON = 1;               //             turn on Timer23
 
-	IPC5bits.T5IP = 5;              // INT step 4: priority
+	IPC5bits.T5IP = 3;              // INT step 4: priority
 	IPC5bits.T5IS = 0;              //             subpriority
 	IFS0bits.T5IF = 0;              // INT step 5: clear interrupt flag
 	IEC0bits.T5IE = 1;              // INT step 6: enable interrupt
