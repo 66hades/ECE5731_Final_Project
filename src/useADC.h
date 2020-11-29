@@ -6,6 +6,7 @@
 //includes
 #include "NU32.h"          // constants, functions for startup and UART
 #include <stdio.h>
+#include "useServo.h"
 //defines
 extern volatile int lightPerc;  /* Declaration of the variable */
 extern volatile int battPerc;  /* Declaration of the variable */

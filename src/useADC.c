@@ -9,6 +9,7 @@
 /********************************/
 #include "NU32.h"          // constants, functions for startup and UART
 #include <stdio.h>
+#include "useServo.h"
 
 /********************************/
 //DEFINES
@@ -39,6 +40,8 @@ void __ISR(_TIMER_2_VECTOR, IPL2SOFT) Timer2ISR(void) {  // INT step 1: the ISR
 	setPhoto();
 	setPot();
 	setBatt();
+	
+	setServo(getPot());
 
 	IFS0bits.T5IF = 0;              // clear interrupt flag
 }
