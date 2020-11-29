@@ -18,26 +18,18 @@
 //#define SAMPLE_TIME 10       // 10 core timer ticks = 250 ns
 //#define DELAY_TICKS 2000000 // delay 0.05 sec, 20 M core ticks, between messages
 #define SAMPLE_TIME 8        // 10 core timer ticks = 200 ns
-#define DELAY_TICKS 40000000 // delay 1 sec, 40 M core ticks, between messages
+#define DELAY_TICKS 1000000 // delay 1 sec, 40 M core ticks, between messages
+
+
+unsigned int sample12 = 0;		//input for photoresistor
+int lightPerc = 0;
+unsigned int sample14 = 0;		//input for potentiometer
+int anglePos = 0;
+
 
 /********************************/
 //FUNCTIONS
 /********************************/
-
-/*int initPhotosensor(int pin)				//setup photoresistor
-{
-	if(pin == 29)
-	{
-		AD1PCFGbits.PCFG15 = 0;                 // AN14 is an adc pin
-		AD1CON3bits.ADCS = 2;                   // ADC clock period is Tad = 2*(ADCS+1)*Tpb =
-												//                           2*3*12.5ns = 75ns
-		AD1CON1bits.ADON = 1;                   // turn on A/D converter
-
-		return pin;
-	}
-
-	return 0;
-}*/
 
 unsigned int adc_sample_convert(int pin) { // sample & convert the value on the given 
                                            // adc pin the pin should be configured as an 
@@ -57,33 +49,35 @@ unsigned int adc_sample_convert(int pin) { // sample & convert the value on the 
     return ADC1BUF0;                      // read the buffer with the result
 }
 
-int main(void) {
-  unsigned int sample12 = 0, sample14 = 0, elapsed = 0;
-  char msg[100] = {};
+void initADC(void)
+{
+	AD1PCFGbits.PCFG12 = 0;                 // AN12 is an adc pin (pot)
+	AD1PCFGbits.PCFG14 = 0;                 // AN14 is an adc pin (photo)
+	AD1CON3bits.ADCS = 2;                   // ADC clock period is Tad = 2*(ADCS+1)*Tpb = 2*3*12.5ns = 75ns
+	AD1CON1bits.ADON = 1;                   // turn on A/D converter
+}
 
-  NU32_Startup();                 // cache on, interrupts on, LED/button init, UART init
+void getPhoto(void)
+{
+	sample12 = adc_sample_convert(12);    // sample and convert pin 12
+	lightPerc = (100 / 1023)*sample12;		//sets light percentage from 0 to 100%
 
-  AD1PCFGbits.PCFG12 = 0;                 // AN12 is an adc pin (pot)
-  AD1PCFGbits.PCFG14 = 0;                 // AN14 is an adc pin (photo)
-  AD1CON3bits.ADCS = 2;                   // ADC clock period is Tad = 2*(ADCS+1)*Tpb = 2*3*12.5ns = 75ns
-  AD1CON1bits.ADON = 1;                   // turn on A/D converter
+	//delays reading once ever 1/80 seconds
+	_CP0_SET_COUNT(0);
+	elapsed = _CP0_GET_COUNT();
 
-  while (1) {
-    _CP0_SET_COUNT(0);                    // set the core timer count to zero
-    sample12 = adc_sample_convert(12);    // sample and convert pin 12
-    sample14 = adc_sample_convert(14);    // sample and convert pin 14
-    elapsed = _CP0_GET_COUNT();           // how long it took to do two samples
-                                          // send the results over serial
-    sprintf(msg, "AN12: %4d (%5.3f volts) \r\n", sample12, sample12 * VOLTS_PER_COUNT);
-    NU32_WriteUART3(msg);
-    sprintf(msg, "AN14: %4d (%5.3f volts) \r\n", sample14, sample14 * VOLTS_PER_COUNT);
-    NU32_WriteUART3(msg);
-    
-    _CP0_SET_COUNT(0);                    // delay to prevent a flood of messages
+	while (_CP0_GET_COUNT() < DELAY_TICKS) 
+	{
+		;
+	}
+	//end delay
 
-    while(_CP0_GET_COUNT() < DELAY_TICKS) {;}
-	
-  }
+	return 0;
 
-  return 0;
+}
+
+void getPot(void)
+{
+	sample14 = adc_sample_convert(14);    // sample and convert pin 14
+	anglePos = (90 / 1023)*sample14;		//sets angle between 0 and 90 deg
 }

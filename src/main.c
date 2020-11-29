@@ -8,8 +8,11 @@
 #include "useLCD.h"
 
 //TIMERS
-//Timer3 is for PWM control of servo
-//Timer45 is for LCD display control
+//Timer1: backup timekeeper if RTC doesn't function
+//Timer2: unused
+//Timer3: PWM control of servo
+//Timer45: LCD display control
+
 //GLOBAL VARIABLES
 
 volatile int day_night = 1  //day = 1, night = 0
@@ -40,7 +43,7 @@ int init(void)
 {	
 	NU32_Startup();
 	initServo();
-	initPhotoresistor();
+	initADC();
 	initLCD();
 
 	return 1;
@@ -52,7 +55,7 @@ int main(void)
 
 	while (1)
 	{
-
+		;
 	}
 
 	return 0;
