@@ -21,6 +21,7 @@ volatile int day_night = 1  //day = 1, night = 0
 //PIN DEFINITIONS
 #define PHOTORESISTOR_INPUT_PIN = 29			//NU32 pin B14
 #define POT_INPUT_PIN = 27						//NU32 pin B12
+#define BATT_IINPUT_PIN = 30					//NU32 pin B15
 #define SERVO_PWM_OUTPUT_PIN = 46				//NU32 pin D0
 #define RTC_PIN = 42							//NU32 pin D8
 #define BUTTon_PIN = 45							//NU32 pin D11			

@@ -35,10 +35,10 @@ void __ISR(_TIMER_5_VECTOR, IPL5SOFT) Timer5ISR(void) {  // INT step 1: the ISR
 		timeStatusLCD(day_night);
 		break;
 	case 1:
-		lightLevelLCD(45);
+		lightLevelLCD(lightPerc);
 		break;
 	case 2:
-		servoPosLCD(86);
+		servoPosLCD(anglePos);
 		break;
 	case 3:
 		batteryLvlLCD(53);
