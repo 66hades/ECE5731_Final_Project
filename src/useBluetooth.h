@@ -1,5 +1,5 @@
-#ifndef LCD_H
-#define LCD_H
+#ifndef USEBLUETOOTH_H
+#define USEBLUETOOTH_H
 
 //todo
 
@@ -8,5 +8,6 @@
 //defines
 
 //functions
-	//init
+void initBluetooth(void);
+
 #endif

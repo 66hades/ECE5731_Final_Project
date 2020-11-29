@@ -20,14 +20,15 @@ LCD screen needs ~5M delay to display clearly
 //#include "NU32.h"			// constants, funcs for startup and UART
 #include "LCD.h"			//uses given LCD library for setup
 #include "NU32.h"
+#include <stdio.h>
 
 #define MSG_LEN_UPPER 16			//Upper row is 16 char long
 #define MSG_LEN_LOWER 16			//Lower row is 16 char long
 
 volatile char infoFlag = 0;			//0 day or night; 1 photo; 2 servo; 3 battery
+extern volatile int day_night = 1;  //day = 1, night = 0
 
 //functions
-
 //Timer45 interrupt for cycling through LCD info 
 void __ISR(_TIMER_5_VECTOR, IPL5SOFT) Timer5ISR(void) {  // INT step 1: the ISR
 	switch (infoFlag) {
@@ -35,13 +36,13 @@ void __ISR(_TIMER_5_VECTOR, IPL5SOFT) Timer5ISR(void) {  // INT step 1: the ISR
 		timeStatusLCD(day_night);
 		break;
 	case 1:
-		lightLevelLCD(lightPerc);
+		lightLevelLCD(90);
 		break;
 	case 2:
-		servoPosLCD(anglePos);
+		servoPosLCD(45);
 		break;
 	case 3:
-		batteryLvlLCD(53);
+		batteryLvlLCD(65);
 		break;
 	default:
 		infoFlag = 0;
@@ -127,3 +128,4 @@ void batteryLvlLCD(int battLvl)
 	LCD_Move(1, 0);
 	LCD_WriteString(s);
 }
+

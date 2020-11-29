@@ -22,11 +22,11 @@
 
 
 unsigned int sample12 = 0;		//input for photoresistor
-int lightPerc = 0;
+volatile int lightPerc = 0;
 unsigned int sample15 = 0;		//input for battery
-int battPerc = 0;
+volatile int battPerc = 0;
 unsigned int sample14 = 0;		//input for potentiometer
-int anglePos = 0;
+volatile int anglePos = 0;
 
 
 /********************************/
