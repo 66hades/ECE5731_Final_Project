@@ -2,7 +2,10 @@
 #define USE_LCD_H
 // to use the LCD for Good Morning Blinds Project
 //todo
-
+#include "LCD.h"			//uses given LCD library for setup
+#include "NU32.h"
+#include <stdio.h>
+#include "useADC.h"
 
 //defines
 #define MSG_LEN_UPPER 16			//Upper row is 16 char long

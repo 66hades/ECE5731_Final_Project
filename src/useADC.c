@@ -36,9 +36,9 @@ volatile int anglePos = 0;
 //Timer2 interrupt for sampling ADC
 void __ISR(_TIMER_2_VECTOR, IPL5SOFT) Timer2ISR(void) {  // INT step 1: the ISR
 	
-	getPhoto();
-	getPot();
-	getBatt();
+	setPhoto();
+	setPot();
+	setBatt();
 
 	IFS0bits.T5IF = 0;              // clear interrupt flag
 }
@@ -91,7 +91,7 @@ void initADC(void)
 	//end interrupt setup
 }
 
-void getPhoto(void)
+void setPhoto(void)
 {
 	sample12 = adc_sample_convert(12);    // sample and convert pin 12
 	lightPerc = (100 / 1023)*sample12;		//sets light percentage from 0 to 100%
@@ -108,10 +108,10 @@ void getPhoto(void)
 	return 0;
 }
 
-void getBatt(void)
+void setBatt(void)
 {
 	sample15 = adc_sample_convert(15);    // sample and convert pin 12
-	lightPerc = (100 / 1023)*sample12;		//sets light percentage from 0 to 100%
+	battPerc = (100 / 1023)*sample12;		//sets light percentage from 0 to 100%
 
 											//delays reading once ever 1/80 seconds
 	_CP0_SET_COUNT(0);
@@ -125,7 +125,7 @@ void getBatt(void)
 	return 0;
 }
 
-void getPot(void)
+void setPot(void)
 {
 	sample14 = adc_sample_convert(14);    // sample and convert pin 14
 	anglePos = (90 / 1023)*sample14;		//sets angle between 0 and 90 deg
@@ -140,4 +140,19 @@ void getPot(void)
 	//end delay
 
 	return 0;
+}
+
+int getPhoto(void)
+{
+	return lightPerc;
+}
+
+int getPot(void)
+{
+	return anglePos;
+}
+
+int getBatt(void)
+{
+	return battPerc;
 }

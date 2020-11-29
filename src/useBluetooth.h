@@ -4,7 +4,8 @@
 //todo
 
 //includes
-
+#include "NU32.h"              // constants, functions for startup and UART
+#include "useLCD.h"				//for day/night variable
 //defines
 
 //functions

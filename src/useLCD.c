@@ -21,6 +21,7 @@ LCD screen needs ~5M delay to display clearly
 #include "LCD.h"			//uses given LCD library for setup
 #include "NU32.h"
 #include <stdio.h>
+#include "useADC.h"
 
 #define MSG_LEN_UPPER 16			//Upper row is 16 char long
 #define MSG_LEN_LOWER 16			//Lower row is 16 char long
@@ -36,13 +37,13 @@ void __ISR(_TIMER_5_VECTOR, IPL5SOFT) Timer5ISR(void) {  // INT step 1: the ISR
 		timeStatusLCD(day_night);
 		break;
 	case 1:
-		lightLevelLCD(90);
+		lightLevelLCD(getPhoto());
 		break;
 	case 2:
-		servoPosLCD(45);
+		servoPosLCD(getPot());
 		break;
 	case 3:
-		batteryLvlLCD(65);
+		batteryLvlLCD(getBatt());
 		break;
 	default:
 		infoFlag = 0;
