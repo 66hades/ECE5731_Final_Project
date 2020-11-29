@@ -59,7 +59,7 @@ void __ISR(_TIMER_5_VECTOR, IPL3SOFT) Timer5ISR(void) {  // INT step 1: the ISR
 	}	
 	
 	sprintf(msg, "Time: %d\t\tLight: %d\t\tServo: %d\t\tBatt: %d\n\r", day_night, getPhoto(), getPot(), getBatt());
-	NU32_WriteUART3(msg);
+	//NU32_WriteUART3(msg);
 
 	IFS0bits.T5IF = 0;              // clear interrupt flag
 }
