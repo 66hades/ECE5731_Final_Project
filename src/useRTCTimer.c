@@ -12,8 +12,7 @@ void __ISR(_TIMER_1_VECTOR, IPL1SOFT) Timer_ISR(void) {    //Step 1
 		
 	//what we want the interrupt to actually do	
 	else {
-		manual_auto = 0;  //switch to auto mode
-		day_night = !day_night; //invert day/night mode
+		invDayNight(); //invert day/night mode
 		count = 0; 
 	}
 		

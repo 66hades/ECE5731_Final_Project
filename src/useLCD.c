@@ -137,3 +137,12 @@ void batteryLvlLCD(int battLvl)
 	LCD_WriteString(s);
 }
 
+int getDayNight(void)
+{
+	return day_night;
+}
+
+void invDayNight(void)
+{
+	day_night = !day_night;
+}

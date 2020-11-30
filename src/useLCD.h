@@ -18,5 +18,8 @@ void timeStatusLCD(int state);
 void lightLevelLCD(int lightLvl);
 void servoPosLCD(int servoPos);
 void batteryLvlLCD(int battLvl);
+int getDayNight(void);
+void invDayNight(void);
+
 
 #endif

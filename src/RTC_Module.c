@@ -12,7 +12,7 @@ void __ISR(_RTCC_VECTOR, IPL3SOFT) __RTCCInterrupt(void)
 	}
 	
 
-void main(void) {
+void main2(void) {
 	
 	NU32_Startup();
 

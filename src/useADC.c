@@ -119,7 +119,7 @@ void setPot(void)
 	}
 	else {
 		
-		if(day_night) {
+		if(getDayNight()) {
 			anglePos = 0;  //blinds open
 		}
 		else{

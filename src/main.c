@@ -22,7 +22,6 @@
 #define SERVO_PWM_OUTPUT_PIN = 46				//NU32 pin D0
 #define RTC_PIN = 42							//NU32 pin D8
 #define BUTTon_manual = 43						//NU32 pin D9
-#define BUTTon_PIN = 45							//NU32 pin D11
 #define UART1_RX = 50							//NU32 pin D2
 #define UART1_TX = 51							//NU32 pin D3
 #define LCD_0_PIN 60							//NU32 pin E0
