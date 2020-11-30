@@ -10,6 +10,7 @@
 #include "NU32.h"          // constants, functions for startup and UART
 #include <stdio.h>
 #include "useServo.h"
+#include "useDigital.h"
 
 /********************************/
 //DEFINES
@@ -43,7 +44,7 @@ void __ISR(_TIMER_2_VECTOR, IPL2SOFT) Timer2ISR(void) {  // INT step 1: the ISR
 	
 	setServo(getPot());
 
-	IFS0bits.T5IF = 0;              // clear interrupt flag
+	IFS0bits.T2IF = 0;              // clear interrupt flag
 }
 
 unsigned int adc_sample_convert(int pin) { // sample & convert the value on the given 
@@ -99,18 +100,6 @@ void setPhoto(void)
 	sample14 = adc_sample_convert(14);    // sample and convert pin 14
 	lightPerc = (100.0 / 1023)*sample14;		//sets light percentage from 0 to 100%
 	
-	/*
-	//delays reading once ever 1/80 seconds
-
-	_CP0_SET_COUNT(0);
-
-	
-	while (_CP0_GET_COUNT() < DELAY_TICKS) 
-	{
-		;
-	}
-	//end delay
-	*/
 }
 
 void setBatt(void)
@@ -118,32 +107,25 @@ void setBatt(void)
 	sample15 = adc_sample_convert(15);    // sample and convert pin 12
 	battPerc = (100.0 / 1023)*sample15;		//sets light percentage from 0 to 100%
 
-	/*										//delays reading once ever 1/80 seconds
-	_CP0_SET_COUNT(0);
-
-	while (_CP0_GET_COUNT() < DELAY_TICKS)
-	{
-		;
-	}
-	//end delay
-	*/
 }
 
 void setPot(void)
-{
-	sample12 = adc_sample_convert(12);    // sample and convert pin 12
+{	
+	//if in manual mode
+	if(manual_auto){
+		
+	sample12 = adc_sample_convert(12);    // sample and convert pin 12	
 	anglePos = (90.0 / 1023)*sample12;		//sets angle between 0 and 90 deg
-	
-	/*
-	//delays reading once ever 1/80 seconds
-	_CP0_SET_COUNT(0);
-
-	while (_CP0_GET_COUNT() < DELAY_TICKS)
-	{
-		;
 	}
-	//end delay
-	*/
+	else {
+		
+		if(day_night) {
+			anglePos = 0;  //blinds open
+		}
+		else{
+			anglePos = 90; //blinds closed
+		}
+	}
 }
 
 int getPhoto(void)
