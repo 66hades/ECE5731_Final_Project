@@ -48,6 +48,7 @@ int init(void)
 	initADC();
 	initBluetooth();
 	initDigital();
+	initRTCTimer();
 
 	return 1;
 }
