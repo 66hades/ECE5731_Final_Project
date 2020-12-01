@@ -8,6 +8,7 @@
 *.elf
 
 # Linker output
+*.dis
 *.ilk
 *.map
 *.exp
