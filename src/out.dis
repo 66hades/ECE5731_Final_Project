@@ -1163,9 +1163,9 @@ void initLCD(void)
 9d002890:	24030001 	li	v1,1
 9d002894:	7c6418c4 	ins	a0,v1,0x3,0x1
 9d002898:	a4440c00 	sh	a0,3072(v0)
-	PR4 = 8999999;               //             set period register
-9d00289c:	3c050089 	lui	a1,0x89
-9d0028a0:	24a5543f 	addiu	a1,a1,21567
+	PR4 = 49999999;               //             set period register
+9d00289c:	3c0502fa 	lui	a1,0x2fa
+9d0028a0:	34a5f07f 	ori	a1,a1,0xf07f
 9d0028a4:	3c04bf80 	lui	a0,0xbf80
 9d0028a8:	ac850c20 	sw	a1,3104(a0)
 	//use 49999999 for 5 seconds

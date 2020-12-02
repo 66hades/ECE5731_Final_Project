@@ -71,7 +71,7 @@ void initLCD(void)
 	__builtin_disable_interrupts(); // INT step 2: disable interrupts at CPU
 									// INT step 3: setup peripheral
 	T4CONbits.T32 = 1;               // use Timer23 in 32bit mode
-	PR4 = 8999999;               //             set period register
+	PR4 = 49999999;               //             set period register
 	//use 49999999 for 5 seconds
 	TMR4 = 0;                       //             initialize count to 0
 	T4CONbits.TCKPS = 0b011;            //             set prescaler to 1:8

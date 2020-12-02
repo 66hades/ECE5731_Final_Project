@@ -2,51 +2,10 @@
 
 Team: Lisa Branchick, Aaron Garofalo, and Brian Neumeyer
 
-Prepared for ECE 5731
-
-## File Structures
-- Main: majority of logic occurs  
-- Photoresistor: functions & values for measuring light levels  
-- LCD: functions & values for LCD screen  
-- Keypad: functions & values for user input  
-- Servo: functions & values for controlling servo  
-- Solar: functions & values for managing & monitoring battery  
-- RTC: functions & values for keeping track of time  
-- Bluetooth: functions & values for wirelessly communicating with a phone  
-- PhoneApp: what runs on a phone to control the system  
-
-## Task Lists
-
-### Brian Neumeyer
-- [x] Create basic file sturcture
-- [x] Assign subsystems
-- [x] LCD display functions & header file
-- [ ] LCD interrupt timer to switch which info is displayed
-- [ ] Bluetooth comms & app
-
-## Lisa Branchick
-- [x] Get github account
-- [x] Does #include "NU32.h" need to be in every submodule .c file or just main.c?
-- [x] Complete Github tutorial
-- [ ] Investigate RTC module
-
-## Aaron Garofalo
-- [x] Get github account
-- [ ] GitHub desktop tutorial  
-- [ ] Correct servo duty cycle math
-
-## General
-- [ ] usePhotoresistor.c
-- [ ] useRTC.c (Aaron/Lisa)
-- [ ] battery monitoring voltage divider - .c 
-- [ ] useServo.c
-- [ ] useLCD.c ()
-- [ ] useBluetooth.c (Brian)
-- [ ] useSwitches.c ()
-- [ ] usePotentiometer ()
-
+Prepared for ECE 5731 Fall 2020
 
 ## References
+- [Functional Demo]()
 - [NU32 Development board](http://hades.mech.northwestern.edu/index.php/NU32)  
 - [NU32 Software/sample code](http://hades.mech.northwestern.edu/index.php/NU32_Software)  
 - [Github formatting](https://docs.github.com/en/free-pro-team@latest/github/writing-on-github/basic-writing-and-formatting-syntax)  
