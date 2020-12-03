@@ -1,11 +1,11 @@
 # ECE5731_Final_Project: Good Morning Blinds
 
-Team: Lisa Branchick, Aaron Garofalo, and Brian Neumeyer
+Team: Lisa Branchick, Aaron Garofalo, and Brian Neumeyer  
 
-Prepared for ECE 5731 Fall 2020
+Prepared for ECE 5731 Fall 2020  
 
 ## References
-- [Functional Demo]()
+- [Functional Demo](https://youtu.be/hfEEi_UJqZ8)
 - [NU32 Development board](http://hades.mech.northwestern.edu/index.php/NU32)  
 - [NU32 Software/sample code](http://hades.mech.northwestern.edu/index.php/NU32_Software)  
 - [Github formatting](https://docs.github.com/en/free-pro-team@latest/github/writing-on-github/basic-writing-and-formatting-syntax)  
