@@ -1,8 +1,3 @@
-/*todo
--If time, custom day/night chars for states
--If time, reduce time spent in interrupt Timer5ISR. Change a flag which gets checked and excecuted in main loop
-*/
-
 /*SUPPLEMENTARY INFO
 LCD screen is 16 char wide by 2 rows
 LCD screen needs ~5M delay to display clearly
@@ -17,9 +12,8 @@ LCD screen needs ~5M delay to display clearly
 */
 
 //includes
-//#include "NU32.h"			// constants, funcs for startup and UART
+#include "NU32.h"			// constants, funcs for startup and UART
 #include "LCD.h"			//uses given LCD library for setup
-#include "NU32.h"
 #include <stdio.h>
 #include "useADC.h"
 
@@ -68,20 +62,20 @@ void initLCD(void)
 {
 	LCD_Setup();
 
-	__builtin_disable_interrupts(); // INT step 2: disable interrupts at CPU
-									// INT step 3: setup peripheral
+	__builtin_disable_interrupts();  // INT step 2: disable interrupts at CPU
+									 // INT step 3: setup peripheral
 	T4CONbits.T32 = 1;               // use Timer23 in 32bit mode
-	PR4 = 49999999;               //             set period register
+	PR4 = 49999999;                  //             set period register
 	//use 49999999 for 5 seconds
-	TMR4 = 0;                       //             initialize count to 0
-	T4CONbits.TCKPS = 0b011;            //             set prescaler to 1:8
-	T4CONbits.ON = 1;               //             turn on Timer23
+	TMR4 = 0;                        //             initialize count to 0
+	T4CONbits.TCKPS = 0b011;         //             set prescaler to 1:8
+	T4CONbits.ON = 1;                //             turn on Timer23
 
-	IPC5bits.T5IP = 3;              // INT step 4: priority
-	IPC5bits.T5IS = 0;              //             subpriority
-	IFS0bits.T5IF = 0;              // INT step 5: clear interrupt flag
-	IEC0bits.T5IE = 1;              // INT step 6: enable interrupt
-	__builtin_enable_interrupts();  // INT step 7: enable interrupts at CPU
+	IPC5bits.T5IP = 3;               // INT step 4: priority
+	IPC5bits.T5IS = 0;               //             subpriority
+	IFS0bits.T5IF = 0;               // INT step 5: clear interrupt flag
+	IEC0bits.T5IE = 1;               // INT step 6: enable interrupt
+	__builtin_enable_interrupts();   // INT step 7: enable interrupts at CPU
 
 }
 

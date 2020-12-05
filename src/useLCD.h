@@ -1,7 +1,6 @@
 #ifndef USE_LCD_H
 #define USE_LCD_H
 // to use the LCD for Good Morning Blinds Project
-//todo
 #include "LCD.h"			//uses given LCD library for setup
 #include "NU32.h"
 #include <stdio.h>

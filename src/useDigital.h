@@ -1,8 +1,6 @@
 #ifndef useDigital_H
 #define useDigital_H
 
-//todo
-
 //includes
 
 //defines

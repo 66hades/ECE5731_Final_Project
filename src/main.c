@@ -1,21 +1,17 @@
-//TODO
-/*
--Pass actual values to LCD info displays
-*/
-
 //LIBRARIES & HEADERS
 #include "NU32.h"   //for NU32 board specific functions
 #include "useLCD.h"
 
 //TIMERS
-//Timer1: backup timekeeper if RTC doesn't function
-//Timer2: unused
+//Timer1: Demonstration in place of RTCC
+//Timer2: ADC
 //Timer3: PWM control of servo
-//Timer45: LCD display control
+//Timer45: LCD control
 
 //GLOBAL VARIABLES
 
 //PIN DEFINITIONS
+/*
 #define PHOTORESISTOR_INPUT_PIN = 29			//NU32 pin B14
 #define POT_INPUT_PIN = 27						//NU32 pin B12
 #define BATT_INPUT_PIN = 30						//NU32 pin B15
@@ -37,6 +33,7 @@
 #define LCD_E_PIN 52							//NU32 pin D4
 #define LCD_R_W_PIN 53							//NU32 pin D5
 #define LCD_RS_PIN 28							//NU32 pin B13
+*/
 
 //INTERRUPTS
 

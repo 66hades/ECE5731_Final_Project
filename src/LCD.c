@@ -26,6 +26,8 @@ static void waitLCD() {
 }
 
 // set up the parallel master port (PMP) to control the LCD 
+
+//Pinout based on LCD library
 // pins RE0 - RE7 (PMD0 - PMD7) connect to LCD pins D0 - D7
 // pin RD4 (PMENB) connects to LCD pin E
 // pin RD5 (PMRD/PMWR) Connects to LCD pin R/W

@@ -1,6 +1,3 @@
-/********************************/
-//TODO
-/********************************/
 //Turn sample timing into interrupt with timer
 
 
@@ -16,11 +13,7 @@
 //DEFINES
 /********************************/
 #define VOLTS_PER_COUNT (3.3/1024) //~3.2mV
-//#define CORE_TICK_TIME 25    // nanoseconds between core ticks
-//#define SAMPLE_TIME 10       // 10 core timer ticks = 250 ns
-//#define DELAY_TICKS 2000000 // delay 0.05 sec, 20 M core ticks, between messages
 #define SAMPLE_TIME 8        // 10 core timer ticks = 200 ns
-#define DELAY_TICKS 1000000 // delay 1 sec, 40 M core ticks, between messages
 
 
 unsigned int sample12 = 0;		//input for photoresistor
@@ -82,13 +75,13 @@ void initADC(void)
 	//interrupt setup
 	__builtin_disable_interrupts(); // INT step 2: disable interrupts at CPU
 									// INT step 3: setup peripheral
-	PR2 = 62499;               //             set period register
-	TMR2 = 0;                       //             initialize count to 0
-	T2CONbits.TCKPS = 0b110;            //             set prescaler to 1:64
-	T2CONbits.ON = 1;               //             turn on Timer23
+	PR2 = 62499;                    // set period register
+	TMR2 = 0;                       // initialize count to 0
+	T2CONbits.TCKPS = 0b110;        // set prescaler to 1:64
+	T2CONbits.ON = 1;               // turn on Timer23
 
 	IPC2bits.T2IP = 2;              // INT step 4: priority
-	IPC2bits.T2IS = 0;              //             subpriority
+	IPC2bits.T2IS = 0;              // subpriority
 	IFS0bits.T2IF = 0;              // INT step 5: clear interrupt flag
 	IEC0bits.T2IE = 1;              // INT step 6: enable interrupt
 	__builtin_enable_interrupts();  // INT step 7: enable interrupts at CPU
@@ -98,14 +91,14 @@ void initADC(void)
 void setPhoto(void)
 {
 	sample14 = adc_sample_convert(14);    // sample and convert pin 14
-	lightPerc = (100.0 / 1023)*sample14;		//sets light percentage from 0 to 100%
+	lightPerc = (100.0 / 1023)*sample14;  //sets light percentage from 0 to 100%
 	
 }
 
 void setBatt(void)
 {
-	sample15 = adc_sample_convert(15);    // sample and convert pin 12
-	battPerc = (100.0 / 1023)*sample15;		//sets light percentage from 0 to 100%
+	sample15 = adc_sample_convert(15);    // sample and convert pin 15
+	battPerc = (100.0 / 1023)*sample15;	  //sets light percentage from 0 to 100%
 
 }
 
