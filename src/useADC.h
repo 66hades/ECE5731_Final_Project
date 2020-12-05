@@ -1,7 +1,6 @@
 #ifndef LCD_H
 #define LCD_H
-// to use the photoresistor for Good Morning Blinds Project
-//todo
+// to use the ADC inputs for Good Morning Blinds Project
 
 //includes
 #include "NU32.h"          // constants, functions for startup and UART
@@ -9,7 +8,7 @@
 #include "useServo.h"
 #include "useDigital.h"
 //defines
-extern volatile int lightPerc;  /* Declaration of the variable */
+extern volatile int lightPerc; /* Declaration of the variable */
 extern volatile int battPerc;  /* Declaration of the variable */
 extern volatile int anglePos;  /* Declaration of the variable */
 

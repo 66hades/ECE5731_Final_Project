@@ -1,7 +1,3 @@
-/*//todo
--if time add "runtime" function that is called periodically
-*/
-
 /********************************
 SUPLEMENTARY DATA
 
@@ -39,12 +35,12 @@ clock period (T) = (Period Register (PR) + 1) * prescaler (N) / system clock (PB
 //DEFINES
 /********************************/
 #define PWM_TIMER3_PRESCALER 0b110			//Timer3 prescaler N=4 (1:4)
-#define PWM_TIMER3_PERIOD_REGISTER 24999		//Timer3 period register 
-#define PWM_MIN_DC 0.025						//1ms => 5% => 2.5% actual => 0 deg
+#define PWM_TIMER3_PERIOD_REGISTER 24999	//Timer3 period register 
+#define PWM_MIN_DC 0.025					//1ms => 5% => 2.5% actual => 0 deg
 #define PWM_MAX_DC 0.05						//1.5ms => 7.5% => 3.75% actual => 90 deg
 #define SERVO_MIN_ANGLE 0
 #define SERVO_MAX_ANGLE 180
-#define SERVO_ZERO_OFFSET 45					//TBD for starting servo in correct position
+#define SERVO_ZERO_OFFSET 45				//TBD for starting servo in correct position
 
 //GLOBAL VARIABLES
 float DC = 0;								//initialize to zero
@@ -57,13 +53,13 @@ int initServo(int pin)							//Initializes the servo IO & PWM
 {
 
 	T3CONbits.TCKPS = PWM_TIMER3_PRESCALER;		// Timer3 prescaler N=4 (1:4)
-	PR3 = PWM_TIMER3_PERIOD_REGISTER;             // 20 ms
-	TMR3 = 0;										// initial TMR2 count is 0
+	PR3 = PWM_TIMER3_PERIOD_REGISTER;           // 20 ms
+	TMR3 = 0;									// initial TMR2 count is 0
 	OC1CONbits.OCM = 0b110;						// PWM mode without fault pin; other OC1CON bits are defaults
 	OC1CONbits.OCTSEL = 1;						// optional (default)
 	OC1RS = (PWM_TIMER3_PERIOD_REGISTER + 1) * PWM_MIN_DC + SERVO_ZERO_OFFSET;									// duty cycle = OC1RS/(PR2+1)
 	OC1R = (PWM_TIMER3_PERIOD_REGISTER + 1) * PWM_MIN_DC + SERVO_ZERO_OFFSET;									// initialize before turning OC1 on; afterward it is read-only
-	T3CONbits.ON = 1;								// turn on Timer2
+	T3CONbits.ON = 1;							// turn on Timer2
 	OC1CONbits.ON = 1;							// turn on OC1
 		
 	return 0;
